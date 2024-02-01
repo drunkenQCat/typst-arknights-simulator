@@ -15,48 +15,52 @@
 
 #set text(size: 1.7em)
 
-#let name_grid = text(
-  char_name,
+#let name_grid(name) = text(
+  name,
   font: "HarmonyOS Sans SC",
   fill: rgb("a1a1a1")
   )
-#let script_grid = text(
-  char_scripts,
+#let script_grid(script) = text(
+  script,
   font: "HarmonyOS Sans SC",
   fill: rgb("f3f3f3")
   )
 
-#let bottom_dialog = table(
+#let bottom_dialog(name, script) = table(
     columns: (1fr , 3fr),
     inset: 10pt,
     align: (top + right, top + left),
     stroke: rgb(100, 100, 100, 0),
     rows: (80pt),
-    name_grid, script_grid
+    name_grid(name), script_grid(script)
   )
 
-#place(
-  top,
-  image(
-    background_pic,
-    width: 120%)
-)
-#place(
-  center,
-  [
-    #box(height: 9pt),
-    #image(
-      portrait_pic,
-      height: 150%
-    ),
-  ]
-)
-#place(bottom,
-  image(
-    "pics/dialog_background.png"
+#let arknights_sim(name, script, portrait, bg, portrait_ratio:120%) = page()[
+  #place(
+    top,
+    image(
+      bg,
+      width: 120%)
   )
-)
-#place(
-  bottom,
-  bottom_dialog
-)
+  #place(
+    center,
+    [
+      #box(height: 9pt),
+      #image(
+        portrait,
+        height: portrait_ratio
+      ),
+    ]
+  )
+  #place(bottom,
+    image(
+      "pics/dialog_background.png"
+    )
+  )
+  #place(
+    bottom,
+    bottom_dialog(name, script)
+  )
+]
+#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", "pics/sayo_portrait.png", background_pic, portrait_ratio:100%)
+#arknights_sim(char_name, char_scripts, portrait_pic, background_pic)

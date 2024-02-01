@@ -17,7 +17,7 @@
 2. 克隆本仓库
 3. 进入`typst arknights simulator`目录，运行
 
-> typst c .\template.typ output.png
+> typst c -f png .\template.typ "output{n}.png"
 
 ## 文件目录说明
 
