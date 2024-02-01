@@ -6,7 +6,7 @@
   height: 18cm, 
   width: 32cm,
   margin: (
-    bottom: 0cm,
+    bottom: -0.01cm,
     left: 0cm,
     right: 0cm,
     top: 0cm
