@@ -4,28 +4,33 @@
 #let char_scripts = "你这家伙，满脑子都是自己呢。"
 
 #let name_grid(name) = text(
-  name,
+  text(
+    name, 
+    size: 1.3em,
+    tracking: 0.02em,
+    ),
   font: "HarmonyOS Sans SC",
-  fill: rgb("a1a1a1")
+  fill: luma(50%)
   )
 #let script_grid(script) = text(
-  script,
+  [ #h(2cm)
+    #script],
   font: "HarmonyOS Sans SC",
-  fill: rgb("f3f3f3")
+  fill: luma(206)
   )
 
 #let bottom_dialog(name, script) = table(
-    columns: (1fr , 3fr),
+    columns: (1fr , 4fr),
     inset: 10pt,
     align: (top + right, top + left),
     stroke: rgb(100, 100, 100, 0),
-    rows: (80pt),
+    rows: (118pt),
     name_grid(name), script_grid(script)
   )
 
 #let arknights_sim(name, script, portrait, bg) = page(
-  height: 18cm, 
-  width: 32cm,
+  height: 810pt,
+  width: 1440pt,
   margin: (
     bottom: -0.01cm,
     left: 0cm,
@@ -33,7 +38,7 @@
     top: 0cm
     ),
 )[
-  #set text(size: 1.7em)
+  #set text(size: 2.7em)
   #place(
     top,
     bg
