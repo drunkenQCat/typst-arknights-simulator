@@ -7,9 +7,10 @@
   text(
     name, 
     size: 1.3em,
-    tracking: 0.02em,
+    tracking: 0.01em,
     ),
   font: "HarmonyOS Sans SC",
+  weight: "medium",
   fill: luma(50%)
   )
 #let script_grid(script) = text(
