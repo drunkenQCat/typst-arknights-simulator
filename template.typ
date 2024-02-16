@@ -62,16 +62,16 @@
   )
 ]
 // 示例
-#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic))
+// #arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic))
 
-#arknights_sim(
-  char_name, 
-  char_scripts, 
-    image(
-      portrait_pic,
-      height: 150%
-    ),
-    image(
-      background_pic,
-      width: 120%),
-)
+// #arknights_sim(
+//   char_name, 
+//   char_scripts, 
+//     image(
+//       portrait_pic,
+//       height: 150%
+//     ),
+//     image(
+//       background_pic,
+//       width: 120%),
+// )

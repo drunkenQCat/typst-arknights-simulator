@@ -15,7 +15,13 @@
 
 1. 安装typst
 2. 克隆本仓库
-3. 进入`typst arknights simulator`目录，运行
+3. 在typst代码中引用
+
+```latex
+#import "typst arknights simulator/template.typ": arknights_sim
+```
+
+4. 如果想要直接查看输出效果，可以进入`typst arknights simulator`目录，将`template.typ`中注释的代码取消注释，并运行
 
 > typst c -f png .\template.typ "output{n}.png"
 
