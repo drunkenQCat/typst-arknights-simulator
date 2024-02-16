@@ -29,6 +29,16 @@
     name_grid(name), script_grid(script)
   )
 
+#let portrait_table(portrait1, portrait2) = table(
+    columns: (1fr, auto, 1fr), // 两边的图片列和中间的空白列
+    rows: auto, // 根据内容自动调整行高
+    align: center, // 居中对齐内容
+    stroke: rgb(100, 100, 100, 0), // 透明边框
+    portrait1, // 左侧肖像
+    box(width: 20pt), // 中间空白列，用于留出空隙
+    portrait2, // 右侧肖像
+  )
+
 #let arknights_sim(name, script, portrait, bg) = page(
   height: 810pt,
   width: 1440pt,
@@ -61,17 +71,71 @@
     bottom_dialog(name, script)
   )
 ]
+#let arknights_sim_2p(name, script, portrait1, portrait2, bg) = page(
+  height: 810pt,
+  width: 1440pt,
+  margin: (
+    bottom: -0.01cm,
+    left: 0cm,
+    right: 0cm,
+    top: 0cm
+    ),
+)[
+  #set text(size: 2.7em)
+  #place(
+    top,
+    bg
+  )
+  #place(
+    center,
+    [
+      #box(height: 80pt),
+      #portrait_table(portrait1, portrait2)
+    ]
+  )
+  #place(bottom,
+    image(
+      "pics/dialog_background.png"
+    )
+  )
+  #place(
+    bottom,
+    bottom_dialog(name, script)
+  )
+]
 // 示例
-// #arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic))
+#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic))
 
-// #arknights_sim(
-//   char_name, 
-//   char_scripts, 
-//     image(
-//       portrait_pic,
-//       height: 150%
-//     ),
-//     image(
-//       background_pic,
-//       width: 120%),
-// )
+#arknights_sim(
+  char_name,
+  char_scripts,
+  image(
+    portrait_pic,
+    height: 150%
+  ),
+  image(
+    background_pic,
+    width: 120%),
+)
+
+#arknights_sim_2p(
+  char_name, 
+  char_scripts, 
+  image(
+    portrait_pic,
+    height: 150%
+  ),
+  image("pics/sayo_portrait.png",height: 80%),
+  image(
+    background_pic,
+    width: 120%
+  )
+)
+
+#portrait_table(
+  image(
+    portrait_pic,
+    width: 100%
+  ),
+  image("pics/sayo_portrait.png",width: 30%),
+)
