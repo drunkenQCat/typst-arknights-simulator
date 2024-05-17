@@ -1,3 +1,4 @@
+#import "@preview/grayness:0.1.0": grayscale-image
 #let background_pic = "pics/Avg_bg_bg_indoor_2.png"
 #let portrait_pic = "pics/portrait.png"
 #let char_name = "丰川祥子"
@@ -29,17 +30,27 @@
     name_grid(name), script_grid(script)
   )
 
-#let portrait_table(portrait1, portrait2) = table(
+#let portrait_table(portrait1, portrait2, focus: 0) = table(
     columns: (1fr, auto, 1fr), // 两边的图片列和中间的空白列
     rows: auto, // 根据内容自动调整行高
     align: center, // 居中对齐内容
     stroke: rgb(100, 100, 100, 0), // 透明边框
-    portrait1, // 左侧肖像
+    if focus == 2{
+      let data = read(portrait1.path, encoding: none)// 左侧肖像
+      grayscale-image(data, height: portrait1.height)
+    }else{
+      portrait1 // 左侧肖像
+    },
     box(width: 20pt), // 中间空白列，用于留出空隙
-    portrait2, // 右侧肖像
+    if focus == 1{
+      let data = read(portrait2.path, encoding: none)// 右侧肖像
+      grayscale-image(data, height: portrait2.height)
+    }else{
+      portrait2 // 右侧肖像
+    },
   )
 
-#let arknights_sim(name, script, portrait, bg) = page(
+#let arknights_sim(name, script, portrait, bg, focus: 0) = page(
   height: 810pt,
   width: 1440pt,
   margin: (
@@ -58,7 +69,12 @@
     center,
     [
       #box(height: 80pt),
-      #portrait
+      #if focus == -1 {
+        let data = read(portrait.path, encoding: none)
+        grayscale-image(data, height: portrait.height)
+      } else {
+        portrait
+      }
     ]
   )
   #place(bottom,
@@ -73,7 +89,7 @@
     bottom_dialog(name, script)
   )
 ]
-#let arknights_sim_2p(name, script, portrait1, portrait2, bg) = page(
+#let arknights_sim_2p(name, script, portrait1, portrait2, bg, focus: 0) = page(
   height: 810pt,
   width: 1440pt,
   margin: (
@@ -92,7 +108,7 @@
     center,
     [
       #box(height: 80pt),
-      #portrait_table(portrait1, portrait2)
+      #portrait_table(portrait1, portrait2, focus: focus)
     ]
   )
   #place(bottom,
@@ -108,7 +124,7 @@
   )
 ]
 // 示例
-#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%))
+#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
 
 #arknights_sim(
   char_name,
@@ -133,7 +149,8 @@
   image(
     background_pic,
     width: 120%
-  )
+  ),
+  focus: 2
 )
 
 #portrait_table(
