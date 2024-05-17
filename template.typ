@@ -41,7 +41,7 @@
     }else{
       portrait1 // 左侧肖像
     },
-    box(width: 20pt), // 中间空白列，用于留出空隙
+    box(width: 1pt), // 中间空白列，用于留出空隙
     if focus == 1{
       let data = read(portrait2.path, encoding: none)// 右侧肖像
       grayscale-image(data, height: portrait2.height)
@@ -68,7 +68,7 @@
   #place(
     center,
     [
-      #box(height: 80pt),
+      #box(height: 40pt),
       #if focus == -1 {
         let data = read(portrait.path, encoding: none)
         grayscale-image(data, height: portrait.height)
@@ -107,7 +107,7 @@
   #place(
     center,
     [
-      #box(height: 80pt),
+      #box(height: 40pt),
       #portrait_table(portrait1, portrait2, focus: focus)
     ]
   )
