@@ -63,7 +63,9 @@
   )
   #place(bottom,
     image(
-      "pics/dialog_background.png"
+      "pics/dialog_background.png",
+      fit: "cover",
+      width: 100%
     )
   )
   #place(
@@ -95,7 +97,9 @@
   )
   #place(bottom,
     image(
-      "pics/dialog_background.png"
+      "pics/dialog_background.png",
+      fit: "cover",
+      width: 100%
     )
   )
   #place(
@@ -104,7 +108,7 @@
   )
 ]
 // 示例
-#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic))
+#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%))
 
 #arknights_sim(
   char_name,
