@@ -32,23 +32,30 @@
   )
 
 #let portrait_table(portrait1, portrait2, focus: 0) = table(
-    columns: (1fr, auto, 1fr), // 两边的图片列和中间的空白列
+    columns: (5fr, 5fr), // 两边的图片列和中间的空白列
     rows: auto, // 根据内容自动调整行高
-    align: center, // 居中对齐内容
+    align: (right, left), // 居中对齐内容
     stroke: rgb(100, 100, 100, 0), // 透明边框
-    if focus == 2{
-      let data = read(portrait1.path, encoding: none)// 左侧肖像
-      grayscale-image(data, height: portrait1.height)
-    }else{
-      portrait1 // 左侧肖像
-    },
-    box(width: 1pt), // 中间空白列，用于留出空隙
-    if focus == 1{
-      let data = read(portrait2.path, encoding: none)// 右侧肖像
-      grayscale-image(data, height: portrait2.height)
-    }else{
-      portrait2 // 右侧肖像
-    },
+    place(
+      right,
+      dx: 3cm,
+      if focus == 2{
+        let data = read(portrait1.path, encoding: none)// 左侧肖像
+        grayscale-image(data, height: portrait1.height)
+      }else{
+        portrait1 // 左侧肖像
+      },
+    ),
+    place(
+      left,
+      dx: -3cm,
+      if focus == 1{
+        let data = read(portrait2.path, encoding: none)// 右侧肖像
+        grayscale-image(data, height: portrait2.height)
+      }else{
+        portrait2 // 右侧肖像
+      },
+    ),
   )
 
 #let arknights_sim(name, script, portrait, bg, focus: 0) = page(
