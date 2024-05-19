@@ -15,14 +15,15 @@
   fill: luma(50%)
   )
 #let script_grid(script) = text(
-  [ #h(2cm)
+  [ 
     #script],
   font: "HarmonyOS Sans SC",
   fill: luma(206)
   )
 
 #let bottom_dialog(name, script) = table(
-    columns: (1fr , 4fr),
+    columns: (1fr , 4fr, auto),
+    gutter: 2cm,
     inset: 10pt,
     align: (top + right, top + left),
     stroke: rgb(100, 100, 100, 0),
