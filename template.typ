@@ -22,13 +22,13 @@
   )
 
 #let bottom_dialog(name, script) = table(
-    columns: (1fr , 4fr, auto),
+    columns: (1fr, 4fr , 15fr, 1fr),
     gutter: 2cm,
     inset: 10pt,
-    align: (top + right, top + left),
+    align: (right, top + right, top + left),
     stroke: rgb(100, 100, 100, 0),
     rows: (118pt),
-    name_grid(name), script_grid(script)
+    box(), name_grid(name), script_grid(script)
   )
 
 #let portrait_table(portrait1, portrait2, focus: 0) = table(
