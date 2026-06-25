@@ -126,27 +126,40 @@
 }
 
 // -- Narrator: text fills full page with semi-transparent overlay --
+// size: "normal" (<=30 chars), "compact" (31-60), "small" (61+)
 
-#let narrator_overlay(script) = place(
-  center,
-  block(
-    width: 100%,
-    height: 100%,
-    fill: rgb(0, 0, 0, 160),
-    inset: (x: 80pt, y: 60pt),
-    align(
-      center + horizon,
-      text(
-        size: 1.8em,
-        font: "HarmonyOS Sans SC",
-        fill: white,
-        script
+#let narrator_overlay(script, size: "normal") = {
+  let (font-size, line-leading) = if size == "small" {
+    (1.4em, 0.6em)
+  } else if size == "compact" {
+    (1.8em, 0.8em)
+  } else {
+    (1.8em, 1.2em)
+  }
+  place(
+    center,
+    block(
+      width: 100%,
+      height: 100%,
+      fill: rgb(0, 0, 0, 160),
+      inset: (x: 80pt, y: 60pt),
+      align(
+        center + horizon,
+        par(
+          leading: line-leading,
+          text(
+            size: font-size,
+            font: "HarmonyOS Sans SC",
+            fill: white,
+            script
+          )
+        )
       )
     )
   )
-)
+}
 
-#let arknights_narrator(script, portrait, bg, focus: 0) = {
+#let arknights_narrator(script, portrait, bg, focus: 0, size: "normal") = {
   place(top, bg)
   place(
     center,
@@ -160,10 +173,10 @@
       }
     ]
   )
-  narrator_overlay(script)
+  narrator_overlay(script, size: size)
 }
 
-#let arknights_narrator_2p(script, portrait1, portrait2, bg, focus: 0) = {
+#let arknights_narrator_2p(script, portrait1, portrait2, bg, focus: 0, size: "normal") = {
   place(top, bg)
   place(
     center,
@@ -172,7 +185,7 @@
       #portrait_table(portrait1, portrait2, focus: focus)
     ]
   )
-  narrator_overlay(script)
+  narrator_overlay(script, size: size)
 }
 // @example
 #arknights_sim("Soyo", "Please, without Sakiko, I...", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
