@@ -124,6 +124,56 @@
     bottom_dialog(name, script)
   )
 }
+
+// -- Narrator: text fills full page with semi-transparent overlay --
+
+#let narrator_overlay(script) = place(
+  center,
+  block(
+    width: 100%,
+    height: 100%,
+    fill: rgb(0, 0, 0, 160),
+    inset: (x: 80pt, y: 60pt),
+    align(
+      center + horizon,
+      text(
+        size: 1.8em,
+        font: "HarmonyOS Sans SC",
+        fill: white,
+        script
+      )
+    )
+  )
+)
+
+#let arknights_narrator(script, portrait, bg, focus: 0) = {
+  place(top, bg)
+  place(
+    center,
+    [
+      #box(height: 40pt),
+      #if focus == -1 {
+        let data = read(portrait.path, encoding: none)
+        grayscale-image(data, height: portrait.height)
+      } else {
+        portrait
+      }
+    ]
+  )
+  narrator_overlay(script)
+}
+
+#let arknights_narrator_2p(script, portrait1, portrait2, bg, focus: 0) = {
+  place(top, bg)
+  place(
+    center,
+    [
+      #box(height: 40pt),
+      #portrait_table(portrait1, portrait2, focus: focus)
+    ]
+  )
+  narrator_overlay(script)
+}
 // @example
 #arknights_sim("Soyo", "Please, without Sakiko, I...", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
 
