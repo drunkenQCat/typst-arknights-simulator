@@ -1,8 +1,19 @@
 #import "@preview/grayness:0.1.0": grayscale-image
 #let background_pic = "pics/Avg_bg_bg_indoor_2.png"
 #let portrait_pic = "pics/portrait.png"
-#let char_name = "丰川祥子"
-#let char_scripts = "你这家伙，满脑子都是自己呢。"
+#let char_name = "YoStar"
+#let char_scripts = "Sample dialog text."
+
+#set page(
+  width: 1440pt,
+  height: 810pt,
+  margin: (
+    bottom: -0.01cm,
+    left: 0cm,
+    right: 0cm,
+    top: 0cm
+  )
+)
 
 #let name_grid(name) = text(
   text(
@@ -32,48 +43,39 @@
   )
 
 #let portrait_table(portrait1, portrait2, focus: 0) = table(
-    columns: (5fr, 5fr), // 两边的图片列和中间的空白列
-    rows: auto, // 根据内容自动调整行高
-    align: (right, left), // 居中对齐内容
-    stroke: rgb(100, 100, 100, 0), // 透明边框
+    columns: (5fr, 5fr),
+    rows: auto,
+    align: (right, left),
+    stroke: rgb(100, 100, 100, 0),
     place(
       right,
       dx: 3cm,
       if focus == 2{
-        let data = read(portrait1.path, encoding: none)// 左侧肖像
+        let data = read(portrait1.path, encoding: none)
         grayscale-image(data, height: portrait1.height)
       }else{
-        portrait1 // 左侧肖像
+        portrait1
       },
     ),
     place(
       left,
       dx: -3cm,
       if focus == 1{
-        let data = read(portrait2.path, encoding: none)// 右侧肖像
+        let data = read(portrait2.path, encoding: none)
         grayscale-image(data, height: portrait2.height)
       }else{
-        portrait2 // 右侧肖像
+        portrait2
       },
     ),
   )
 
-#let arknights_sim(name, script, portrait, bg, focus: 0) = page(
-  height: 810pt,
-  width: 1440pt,
-  margin: (
-    bottom: -0.01cm,
-    left: 0cm,
-    right: 0cm,
-    top: 0cm
-    ),
-)[
-  #set text(size: 2.7em)
-  #place(
+#let arknights_sim(name, script, portrait, bg, focus: 0) = {
+  set text(size: 2.7em)
+  place(
     top,
     bg
   )
-  #place(
+  place(
     center,
     [
       #box(height: 40pt),
@@ -85,54 +87,45 @@
       }
     ]
   )
-  #place(bottom,
+  place(bottom,
     image(
       "pics/dialog_background.png",
       fit: "cover",
       width: 100%
     )
   )
-  #place(
+  place(
     bottom,
     bottom_dialog(name, script)
   )
-]
-#let arknights_sim_2p(name, script, portrait1, portrait2, bg, focus: 0) = page(
-  height: 810pt,
-  width: 1440pt,
-  margin: (
-    bottom: -0.01cm,
-    left: 0cm,
-    right: 0cm,
-    top: 0cm
-    ),
-)[
-  #set text(size: 2.7em)
-  #place(
+}
+#let arknights_sim_2p(name, script, portrait1, portrait2, bg, focus: 0) = {
+  set text(size: 2.7em)
+  place(
     top,
     bg
   )
-  #place(
+  place(
     center,
     [
       #box(height: 40pt),
       #portrait_table(portrait1, portrait2, focus: focus)
     ]
   )
-  #place(bottom,
+  place(bottom,
     image(
       "pics/dialog_background.png",
       fit: "cover",
       width: 100%
     )
   )
-  #place(
+  place(
     bottom,
     bottom_dialog(name, script)
   )
-]
-// 示例
-#arknights_sim("长崎素世", "求你了，如果没有祥子你们的话，瓦塔西！", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
+}
+// @example
+#arknights_sim("Soyo", "Please, without Sakiko, I...", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
 
 #arknights_sim(
   char_name,
