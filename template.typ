@@ -51,7 +51,7 @@
       right,
       dx: 3cm,
       if focus == 2{
-        let data = read(portrait1.path, encoding: none)
+        let data = read(portrait1.source, encoding: none)
         grayscale-image(data, height: portrait1.height)
       }else{
         portrait1
@@ -61,7 +61,7 @@
       left,
       dx: -3cm,
       if focus == 1{
-        let data = read(portrait2.path, encoding: none)
+        let data = read(portrait2.source, encoding: none)
         grayscale-image(data, height: portrait2.height)
       }else{
         portrait2
@@ -80,7 +80,7 @@
     [
       #box(height: 40pt),
       #if focus == -1 {
-        let data = read(portrait.path, encoding: none)
+        let data = read(portrait.source, encoding: none)
         grayscale-image(data, height: portrait.height)
       } else {
         portrait
@@ -166,7 +166,7 @@
     [
       #box(height: 40pt),
       #if focus == -1 {
-        let data = read(portrait.path, encoding: none)
+        let data = read(portrait.source, encoding: none)
         grayscale-image(data, height: portrait.height)
       } else {
         portrait
