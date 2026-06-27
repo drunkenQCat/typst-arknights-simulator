@@ -1,8 +1,4 @@
 #import "@preview/grayness:0.1.0": grayscale-image
-#let background_pic = "pics/Avg_bg_bg_indoor_2.png"
-#let portrait_pic = "pics/portrait.png"
-#let char_name = "YoStar"
-#let char_scripts = "Sample dialog text."
 
 #set page(
   width: 1440pt,
@@ -130,11 +126,11 @@
 
 #let narrator_overlay(script, size: "normal") = {
   let (font-size, line-leading) = if size == "small" {
-    (1.4em, 0.6em)
+    (2.5em, 0.6em)
   } else if size == "compact" {
-    (1.8em, 0.8em)
+    (2.8em, 1em)
   } else {
-    (1.8em, 1.2em)
+    (2.8em, 1.8em)
   }
   place(
     center,
@@ -187,40 +183,3 @@
   )
   narrator_overlay(script, size: size)
 }
-// @example
-#arknights_sim("Soyo", "Please, without Sakiko, I...", image("pics/sayo_portrait.png",height: 80%), image(background_pic, width: 100%), focus: -1)
-
-#arknights_sim(
-  char_name,
-  char_scripts,
-  image(
-    portrait_pic,
-    height: 150%
-  ),
-  image(
-    background_pic,
-    width: 120%),
-)
-
-#arknights_sim_2p(
-  char_name, 
-  char_scripts, 
-  image(
-    portrait_pic,
-    height: 150%
-  ),
-  image("pics/sayo_portrait.png",height: 80%),
-  image(
-    background_pic,
-    width: 120%
-  ),
-  focus: 2
-)
-
-#portrait_table(
-  image(
-    portrait_pic,
-    width: 100%
-  ),
-  image("pics/sayo_portrait.png",width: 30%),
-)
